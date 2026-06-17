@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS livros (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  autor VARCHAR(255) NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+  descricao TEXT,
+  imagem_url TEXT
+);
+
+CREATE TABLE IF NOT EXISTS pedidos (
+  id SERIAL PRIMARY KEY,
+  livro_id INTEGER REFERENCES livros(id),
+  nome_cliente VARCHAR(255) NOT NULL,
+  email_cliente VARCHAR(255) NOT NULL,
+  endereco TEXT NOT NULL,
+  total DECIMAL(10,2) NOT NULL,
+  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
