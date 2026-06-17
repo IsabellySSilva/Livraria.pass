@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Livraria Online</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+<h1>Livraria Online</h1>
+<nav>
+<a href="/produtos">Produtos</a>
+<a href="/cadastro">Cadastrar Livro</a>
+</nav>
+</header>
+ 
+  <main>
+<h2>Livros disponíveis</h2>
+ 
+    <% if (livros.length === 0) { %>
+<p>Nenhum livro cadastrado ainda.</p>
+<a class="botao" href="/cadastro">Cadastrar primeiro livro</a>
+<% } else { %>
+<section class="grid">
+<% livros.forEach(livro => { %>
+<div class="card">
+<% if (livro.imagem_url) { %>
+<img src="<%= livro.imagem_url %>" alt="Capa do livro <%= livro.titulo %>">
+<% } %>
+ 
+            <h3><%= livro.titulo %></h3>
+<p><strong>Autor:</strong> <%= livro.autor %></p>
+<p><%= livro.descricao %></p>
+<p class="preco">R$ <%= Number(livro.preco).toFixed(2).replace('.', ',') %></p>
+ 
+            <a class="botao" href="/checkout/<%= livro.id %>">Comprar</a>
+</div>
+<% }) %>
+</section>
+<% } %>
+</main>
+</body>
+</html>
